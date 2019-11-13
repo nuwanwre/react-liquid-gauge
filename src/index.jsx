@@ -6,7 +6,7 @@ import * as ease from 'd3-ease';
 import { interpolateNumber } from 'd3-interpolate';
 import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
-import { arc, area } from 'd3-shape';
+import { area } from 'd3-shape';
 import { timer } from 'd3-timer';
 import './transition-polyfill';
 import { generate } from './hashid';
@@ -295,11 +295,6 @@ class LiquidFillGauge extends PureComponent {
         } = this.props;
         const radius = Math.min(this.props.height / 2, this.props.width / 2);
         const fillCircleRadius = radius * (this.props.innerRadius - this.props.margin);
-        const circle = arc()
-            .outerRadius(this.props.outerRadius * radius)
-            .innerRadius(this.props.innerRadius * radius)
-            .startAngle(0)
-            .endAngle(Math.PI * 2);
         const cX = (this.props.width / 2);
         const cY = (this.props.height / 2);
         const fillColor = this.props.waveStyle.fill;
@@ -359,9 +354,12 @@ class LiquidFillGauge extends PureComponent {
                             {this.props.textRenderer(this.props)}
                         </text>
                         <g clipPath={`url(#clipWave-${id})`}>
-                            <circle
+                            <rect
                                 className="wave"
-                                r={fillCircleRadius}
+                                width={'80%'}
+                                height={'100%'}
+                                x={fillCircleRadius * -1}
+                                y={fillCircleRadius * -1}
                                 {...this.props.waveStyle}
                                 fill={this.props.gradient ? `url(#gradient-${id})` : this.props.waveStyle.fill}
                             />
@@ -376,18 +374,6 @@ class LiquidFillGauge extends PureComponent {
                                 {this.props.textRenderer(this.props)}
                             </text>
                         </g>
-                        <path
-                            className="circle"
-                            d={circle()}
-                            {...this.props.circleStyle}
-                        />
-                        <circle
-                            r={radius}
-                            fill="rgba(0, 0, 0, 0)"
-                            stroke="rgba(0, 0, 0, 0)"
-                            style={{ pointerEvents: 'all' }}
-                            onClick={this.props.onClick}
-                        />
                     </g>
                     <Gradient id={`gradient-${id}`}>
                         {gradientStops.map((stop, index) => {
