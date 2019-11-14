@@ -33,6 +33,10 @@ class LiquidFillGauge extends PureComponent {
             PropTypes.node
         ]),
 
+        titleText: PropTypes.string,
+        currentAmountText: PropTypes.string,
+        totalAmountText: PropTypes.string,
+
         // The relative height of the text to display in the wave circle. A value of 1 equals 50% of the radius of the outer circle.
         textSize: PropTypes.number,
         textOffsetX: PropTypes.number,
@@ -100,6 +104,9 @@ class LiquidFillGauge extends PureComponent {
         height: 400,
         value: 0,
         percent: '%',
+        titleText: 'Title',
+        currentAmountText: '100 units',
+        totalAmountText: '1000 units',
         textSize: 1,
         textOffsetX: 0,
         textOffsetY: 0,
@@ -353,6 +360,13 @@ class LiquidFillGauge extends PureComponent {
                         >
                             {this.props.textRenderer(this.props)}
                         </text>
+                        <rect
+                            x={fillCircleRadius * -1}
+                            y={fillCircleRadius * -1}
+                            width="80%"
+                            height="100%"
+                            style={{ fill: 'none', stroke: '#cccccc', strokeWidth: '1px', borderRadius: '3px' }}
+                        />
                         <g clipPath={`url(#clipWave-${id})`}>
                             <rect
                                 className="wave"

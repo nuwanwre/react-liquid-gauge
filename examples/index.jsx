@@ -40,21 +40,21 @@ const Gauge = ({ radius = 200, value = 0, ...props }) => {
             textSize={1}
             textOffsetX={0}
             textOffsetY={0}
-            textRenderer={({ value, width, height, textSize, percent }) => {
+            textRenderer={({ value, width, height, textSize, percent, titleText }) => {
                 value = Math.round(value);
                 const radius = Math.min(height / 2, width / 2);
                 const textPixels = (textSize * radius / 2);
                 const valueStyle = {
                     fontSize: textPixels
                 };
-                const percentStyle = {
-                    fontSize: textPixels * 0.6
-                };
+                // const percentStyle = {
+                //     fontSize: textPixels * 0.6
+                // };
 
                 return (
                     <tspan>
-                        <tspan className="value" style={valueStyle}>{value}</tspan>
-                        <tspan style={percentStyle}>{percent}</tspan>
+                        <tspan className="value" style={valueStyle}>{titleText}</tspan>
+                        {/* <tspan style={percentStyle}>{percent}</tspan> */}
                     </tspan>
                 );
             }}
@@ -96,10 +96,13 @@ class App extends Component {
                         <Gauge
                             style={{ margin: '0 auto 20px auto' }}
                             radius={200}
-                            value={this.state.value1}
+                            value={2}
                             onClick={() => {
                                 this.setState({ value1: Math.random() * 100 });
                             }}
+                            titleText={'UNIT'}
+                            currentAmountText={'100 units'}
+                            totalAmountText={'1000 units'}
                         />
                     </div>
                     <div className="col-md-6 col-sm-12">
@@ -110,6 +113,9 @@ class App extends Component {
                             onClick={() => {
                                 this.setState({ value2: Math.random() * 100 });
                             }}
+                            titleText={'UNIT'}
+                            currentAmountText={'100 units'}
+                            totalAmountText={'1000 units'}
                         />
                     </div>
                 </div>
