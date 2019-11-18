@@ -95,8 +95,8 @@ class App extends Component {
                     <div className="col-md-6 col-sm-12">
                         <Gauge
                             style={{ margin: '0 auto 20px auto' }}
-                            radius={200}
-                            value={90}
+                            radius={90}
+                            value={10}
                             onClick={() => {
                                 this.setState({ value1: Math.random() * 100 });
                             }}
@@ -108,7 +108,7 @@ class App extends Component {
                     <div className="col-md-6 col-sm-12">
                         <Gauge
                             style={{ margin: '0 auto 20px auto' }}
-                            radius={200}
+                            radius={90}
                             value={this.state.value2}
                             onClick={() => {
                                 this.setState({ value2: Math.random() * 100 });

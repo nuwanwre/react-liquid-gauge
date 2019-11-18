@@ -386,7 +386,7 @@ class LiquidFillGauge extends PureComponent {
                             x={fillCircleRadius * -1}
                             y={fillCircleRadius * -1}
                             width="80%"
-                            height="88.5%"
+                            height="91.5%"
                             style={{ fill: 'none', stroke: '#cccccc', strokeWidth: '1px', rx: '3px' }}
                         />
                     </g>
