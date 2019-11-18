@@ -360,20 +360,14 @@ class LiquidFillGauge extends PureComponent {
                         >
                             {this.props.textRenderer(this.props)}
                         </text>
-                        <rect
-                            x={fillCircleRadius * -1}
-                            y={fillCircleRadius * -1}
-                            width="80%"
-                            height="100%"
-                            style={{ fill: 'none', stroke: '#cccccc', strokeWidth: '1px', rx: '3px' }}
-                        />
                         <g clipPath={`url(#clipWave-${id})`}>
                             <rect
                                 className="wave"
                                 width={'80%'}
-                                height={'100%'}
+                                height={'86%'}
                                 x={fillCircleRadius * -1}
-                                y={fillCircleRadius * -1}
+                                y={(fillCircleRadius * -1) + 10}
+                                rx={3}
                                 {...this.props.waveStyle}
                                 fill={this.props.gradient ? `url(#gradient-${id})` : this.props.waveStyle.fill}
                             />
@@ -388,6 +382,13 @@ class LiquidFillGauge extends PureComponent {
                                 {this.props.textRenderer(this.props)}
                             </text>
                         </g>
+                        <rect
+                            x={fillCircleRadius * -1}
+                            y={fillCircleRadius * -1}
+                            width="80%"
+                            height="88.5%"
+                            style={{ fill: 'none', stroke: '#cccccc', strokeWidth: '1px', rx: '3px' }}
+                        />
                     </g>
                     <Gradient id={`gradient-${id}`}>
                         {gradientStops.map((stop, index) => {
