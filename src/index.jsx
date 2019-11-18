@@ -363,8 +363,8 @@ class LiquidFillGauge extends PureComponent {
                         <g clipPath={`url(#clipWave-${id})`}>
                             <rect
                                 className="wave"
-                                width={'80%'}
-                                height={'86%'}
+                                width={'88%'}
+                                height={'82.5%'}
                                 x={fillCircleRadius * -1}
                                 y={(fillCircleRadius * -1) + 10}
                                 rx={3}
@@ -384,9 +384,9 @@ class LiquidFillGauge extends PureComponent {
                         </g>
                         <rect
                             x={fillCircleRadius * -1}
-                            y={fillCircleRadius * -1}
-                            width="80%"
-                            height="91.5%"
+                            y={(fillCircleRadius * -1) + 10}
+                            width="88%"
+                            height="82.5%"
                             style={{ fill: 'none', stroke: '#cccccc', strokeWidth: '1px', rx: '3px' }}
                         />
                     </g>
