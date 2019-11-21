@@ -50341,7 +50341,6 @@ var LiquidFillGauge = (_temp = _class = function (_PureComponent) {
 
             var radius = Math.min(this.props.height / 2, this.props.width / 2);
             var fillCircleRadius = radius * (this.props.innerRadius - this.props.margin);
-            var circle = (0, _d3Shape.arc)().outerRadius(this.props.outerRadius * radius).innerRadius(this.props.innerRadius * radius).startAngle(0).endAngle(Math.PI * 2);
             var cX = this.props.width / 2;
             var cY = this.props.height / 2;
             var fillColor = this.props.waveStyle.fill;
@@ -50408,9 +50407,13 @@ var LiquidFillGauge = (_temp = _class = function (_PureComponent) {
                         _react2.default.createElement(
                             'g',
                             { clipPath: 'url(#clipWave-' + id + ')' },
-                            _react2.default.createElement('circle', _extends({
+                            _react2.default.createElement('rect', _extends({
                                 className: 'wave',
-                                r: fillCircleRadius
+                                width: '88%',
+                                height: '82.5%',
+                                x: fillCircleRadius * -1,
+                                y: fillCircleRadius * -1 + 10,
+                                rx: 3
                             }, this.props.waveStyle, {
                                 fill: this.props.gradient ? 'url(#gradient-' + id + ')' : this.props.waveStyle.fill
                             })),
@@ -50426,16 +50429,12 @@ var LiquidFillGauge = (_temp = _class = function (_PureComponent) {
                                 this.props.textRenderer(this.props)
                             )
                         ),
-                        _react2.default.createElement('path', _extends({
-                            className: 'circle',
-                            d: circle()
-                        }, this.props.circleStyle)),
-                        _react2.default.createElement('circle', {
-                            r: radius,
-                            fill: 'rgba(0, 0, 0, 0)',
-                            stroke: 'rgba(0, 0, 0, 0)',
-                            style: { pointerEvents: 'all' },
-                            onClick: this.props.onClick
+                        _react2.default.createElement('rect', {
+                            x: fillCircleRadius * -1,
+                            y: fillCircleRadius * -1 + 10,
+                            width: '88%',
+                            height: '82.5%',
+                            style: { fill: 'none', stroke: '#cccccc', strokeWidth: '1px', rx: '3px' }
                         })
                     ),
                     _react2.default.createElement(
@@ -50467,6 +50466,10 @@ var LiquidFillGauge = (_temp = _class = function (_PureComponent) {
     value: _propTypes2.default.number,
     // The percent string (%) or SVG text element.
     percent: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.node]),
+
+    titleText: _propTypes2.default.string,
+    currentAmountText: _propTypes2.default.string,
+    totalAmountText: _propTypes2.default.string,
 
     // The relative height of the text to display in the wave circle. A value of 1 equals 50% of the radius of the outer circle.
     textSize: _propTypes2.default.number,
@@ -50529,6 +50532,9 @@ var LiquidFillGauge = (_temp = _class = function (_PureComponent) {
     height: 400,
     value: 0,
     percent: '%',
+    titleText: 'Title',
+    currentAmountText: '100 units',
+    totalAmountText: '1000 units',
     textSize: 1,
     textOffsetX: 0,
     textOffsetY: 0,
@@ -50686,7 +50692,8 @@ var Gauge = function Gauge(_ref) {
                 width = _ref2.width,
                 height = _ref2.height,
                 textSize = _ref2.textSize,
-                percent = _ref2.percent;
+                percent = _ref2.percent,
+                titleText = _ref2.titleText;
 
             value = Math.round(value);
             var radius = Math.min(height / 2, width / 2);
@@ -50694,9 +50701,9 @@ var Gauge = function Gauge(_ref) {
             var valueStyle = {
                 fontSize: textPixels
             };
-            var percentStyle = {
-                fontSize: textPixels * 0.6
-            };
+            // const percentStyle = {
+            //     fontSize: textPixels * 0.6
+            // };
 
             return _react2.default.createElement(
                 'tspan',
@@ -50704,12 +50711,7 @@ var Gauge = function Gauge(_ref) {
                 _react2.default.createElement(
                     'tspan',
                     { className: 'value', style: valueStyle },
-                    value
-                ),
-                _react2.default.createElement(
-                    'tspan',
-                    { style: percentStyle },
-                    percent
+                    titleText
                 )
             );
         },
@@ -50772,11 +50774,14 @@ var App = function (_Component) {
                         { className: 'col-md-6 col-sm-12' },
                         _react2.default.createElement(Gauge, {
                             style: { margin: '0 auto 20px auto' },
-                            radius: 200,
-                            value: this.state.value1,
+                            radius: 90,
+                            value: 1,
                             onClick: function onClick() {
                                 _this2.setState({ value1: Math.random() * 100 });
-                            }
+                            },
+                            titleText: 'UNIT',
+                            currentAmountText: '100 units',
+                            totalAmountText: '1000 units'
                         })
                     ),
                     _react2.default.createElement(
@@ -50784,11 +50789,14 @@ var App = function (_Component) {
                         { className: 'col-md-6 col-sm-12' },
                         _react2.default.createElement(Gauge, {
                             style: { margin: '0 auto 20px auto' },
-                            radius: 200,
+                            radius: 90,
                             value: this.state.value2,
                             onClick: function onClick() {
                                 _this2.setState({ value2: Math.random() * 100 });
-                            }
+                            },
+                            titleText: 'UNIT',
+                            currentAmountText: '100 units',
+                            totalAmountText: '1000 units'
                         })
                     )
                 ),
@@ -50831,4 +50839,4 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?931ea43a717c89d82a50
+//# sourceMappingURL=bundle.js.map?3111bcb615636b56777c
