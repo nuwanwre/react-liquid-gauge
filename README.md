@@ -2,7 +2,7 @@
 
 Forked from [React-Liquid-Guage](https://github.com/trendmicro-frontend/react-liquid-gauge)
 
-[Demo](https://i.imgur.com/P4YtC6s.mp4)
+![DEMO](https://i.imgur.com/gb1S3bJ.gifv)
 
 This implementation persists the wave pattern and accompanying animations, but clips the guage to a rectangular shape.
 
